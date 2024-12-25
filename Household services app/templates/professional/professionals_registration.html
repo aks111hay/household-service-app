@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{%block title%}Registration Form{%endblock%}</title>
+    <style>
+        form .title{
+            margin: 16px;
+            padding:10px;
+        }
+        .container{
+            margin: 300px;
+        }
+    </style>
+    <link rel="stylesheet" href="../../static/stylesheet.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <form class="container" style="margin-top:40px;padding:40px;" method = "POST" action="{{url_for('prof.professional_register')}}" enctype="multipart/form-data">
+        <h1> Service Professionals Registration Form</h1>
+        <div class="form">
+
+            <div class="title">
+                <label for="image" class="label">Profile pic</label>
+                <input type="file" id="image" name="image" placeholder="upload profile pic">
+            </div>
+
+            <div class="title">
+                <label for="fname" class="label">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Enter your first name">
+            </div>
+            <div class="title">
+                <label for="lname" class="label">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Enter your last name">
+            </div>
+            <div class="title">
+                <label for="phone" class="label">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="title">
+                <label for="email" class="label">Email (Username)</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+            <div class="title">
+                <label for="password" class="label">password</label>
+                <input type="password" id="referral" name="password" placeholder="Enter password">
+            </div>
+            <div class="title">
+                <label for="state" class="label">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter your state">
+            </div>
+            <div class="title">
+                <label for="city" class="label">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city">
+            </div>
+            <div class="title">
+                <label for="pincode" class="label">Pin Code</label>
+                <input type="text" id="pincode" name="pincode" placeholder="Enter your pin code">
+            </div>
+            <div class="title">
+                <label for="address" class="label">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" style="padding:60px;">
+            </div>
+            <div class="title">
+                <label for="about" class="label">About</label>
+                <input type="text" id="about" name="about" placeholder="Enter your bio" style="padding:60px;">
+            </div>
+            <div class="title">
+                <label for="experience" class="label">Experience</label>
+                <input type="text" id="experience" name="experience" placeholder="Enter your experience">
+            </div>
+            <select name="service" class="title">
+                <option value="" disabled selected>Select a service</option>
+                {% for service in services %}
+
+                <option value="{{service.ser_id}}">{{service.name}}</option>
+                {% endfor %}
+            </select>
+            <div class="title">
+                <label for="rate" class="label">rate/service(in rupees)</label>
+                <input type="text" id="rate" name="rate">
+            </div>
+            <div class="title">
+                <label for="age" class="label">Age(in years)</label>
+                <input type="text" id="age" name="age">
+            </div>
+            <div class="title">
+                <label for="document" class="label" enctype="multipart/form-data">Upload Document(aadhar card)</label>
+                <input type="file" id="document" name="document">
+            </div>
+            <div class="title">
+                <button type="submit" class="primary-btn">Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

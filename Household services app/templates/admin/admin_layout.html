@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}admin layout{% endblock %}</title>
+    <link rel="stylesheet" href="../static/admin_stylesheet.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .navbar ul li a :hover{
+            text-decoration: underline;    
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+        <div class="navbar">
+            
+            <ul>
+                <li>
+                   <a href="{{url_for('adminbp.dashboard')}}">Dashboard</a>
+                </li>
+                <li>
+                    <a href="{{url_for('adminbp.manageservices')}}">Manage Requests and services</a>
+                </li>
+                <li>
+                    <a href="{{url_for('adminbp.summary')}}">Summary</a>
+                </li>
+                <li>
+                    <a href='{{url_for("logout")}}'>Logout</a>
+                </li>   
+        </ul>
+        </div>
+        {% block content %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+        <div class="search">
+            <form action="admin/search" method="POST">
+                <label for="search">Search by:</label>
+                <select name="search_category" id="search-options">
+                    <option value="services" {% if search_category == "services" %}selected{% endif %}>Services</option>
+                    <option value="customers" {% if search_category == "customers" %}selected{% endif %}>Customers</option>
+                    <option value="professionals" {% if search_category == "professionals" %}selected{% endif %}>Professionals</option>
+                </select>
+                <input type="text" name="search_text" id="example" placeholder="Type something here..." value="{{ search_text or '' }}">
+                <button class="primary-button" type="submit">Submit</button>
+            </form>
+        </div>
+    
+        <div class="results">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Assigned Professional</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if results %}
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ result.req_id }}</td> 
+                                
+                                <td>
+                                    {% if result.service.professional %}
+                                        {{ result.service.professional.first_name }} {{ result.service.professional.last_name }}
+                                    {% else %}
+                                        Not Assigned
+                                    {% endif %}
+                                </td>
+                                <td>{{ result.date_req }}</td> 
+                                <td>{{ result.status }}</td> 
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No results found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>                
+            </table>
+        </div>
+        
+        {% endblock %}
+</body>
+</html>

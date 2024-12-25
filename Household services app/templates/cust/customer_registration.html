@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{%block title%}Registration Form{%endblock%}</title>
+    <link rel="stylesheet" href="../../static/stylesheet.css">
+    <style>
+        .container{
+            padding: 80px;
+            margin:400px;
+            align-items: center;
+            margin-top:20px;
+            margin-bottom: 20px;
+        }
+
+        .form .form-title{
+            margin: 16px;
+            padding:10px;
+        }
+        .container1{
+            margin-left:400px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</div>
+    <form class="container"  method="POST" action="{{url_for('cust.cust_register')}}" enctype="multipart/form-data">
+        <h1> Service Professionals Registration Form</h1> 
+        <h1> Customers Registration Form</h1>
+        <div class="form">
+            <div class="form-title">
+                <label for="image" class="label">upload profile pic</label>
+                <input type="file" id="image" name="image" placeholder="Upload profile pic" required>
+            </div>
+            <div class="form-title">
+                <label for="fname" class="label">First Name</label>
+                <input type="text" id="fname" name="first_name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-title">
+                <label for="lname" class="label">Last Name</label>
+                <input type="text" id="lname" name="last_name" placeholder="Enter your last name" >
+            </div>
+            <div class="form-title">
+                <label for="phone" class="label">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-title">
+                <label for="email" class="label">Email (Username)</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-title">
+                <label for="password" class="label">password</label>
+                <input type="password" id="email" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-title">
+                <label for="state" class="label">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter your state" required>
+            </div>
+            <div class="form-title">
+                <label for="city" class="label">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+            </div>
+            <div class="form-title">
+                <label for="pincode" class="label">Pin Code</label>
+                <input type="text" id="pincode" name="pincode" placeholder="Enter your pin code" required>
+            </div>
+            <div class="form-title">
+                <label for="address" class="label">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" required style="padding:60px;">
+            </div>
+            
+            
+            <div class="form-title">
+                <button type="submit" class="primary-btn">Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

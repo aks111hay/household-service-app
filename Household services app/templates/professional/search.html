@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Services</title>
+</head>
+<body>
+    <h1>Search Services</h1>
+    <form method="POST" action="{{ url_for('prof.search') }}">
+        
+        <!-- Select Option to Choose Search Criterion -->
+        <label for="search_option">Select Search Option:</label>
+        <select name="search_option" id="search_option">
+            <option value="date" >Date</option>
+            <option value="address" >Address</option>
+            <option value="pincode" >Pin Code</option>
+            <option value="customer_name" >Customer Name</option>
+            <option value="search_text">Search Text</option>
+        </select>
+            <div>
+                <label for="search_text">Search Text:</label>
+                <input type="text" id="search_text" name="search_text" value="{{ request.form.get('search_text') }}" placeholder="Enter search text">
+            </div>
+        
+
+        <button type="submit">Search</button>
+    </form>
+    {% if results %}
+    <h2>Search Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Pin Code</th>
+                <th>Date</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in results %}
+            <tr>
+                <td>{{ request.req_id }}</td>
+                <td>{{ request.service.first_name }} {{ request.service.last_name }}</td>
+                <td>{{ request.service.phone_number }}</td>
+                <td>{{ request.service.address }}</td>
+                <td>{{ request.service.pin_code }}</td>
+                <td>{{ request.date_req }}</td>
+                <td>{{ request.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</body>
+</html>

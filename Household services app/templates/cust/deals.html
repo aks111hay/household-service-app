@@ -1,0 +1,24 @@
+{% extends 'cust_dashboard.html' %}
+{% block title %}best_deals{% endblock %}
+{% block content %}
+<div class="best-service" style="background-color: aquamarine;
+    box-shadow: 0 10px 20px rgba(0, 128, 66, 0.556);">
+        <p style="text-align:center;font-size:30px;margin:20px;padding:20px;">Best {{ service.name }} services</p>
+        <table>
+        <tbody>
+            {% for professional in professionals %}
+            <tr>
+                <td>{{ professional.first_name }}</td>
+                <td>{{ professional.rating }}</td>
+                <td>${{ professional.price }}</td>
+                <td>
+                    <form action="{{ url_for('cust.book_service', professional_id=professional.professional_id) }}" method="POST">
+                        <button type="submit" class="primary-btn">Book</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+    </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../static/admin_stylesheet.css">
+
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  <div class="navbar">
+            
+    <ul>
+        <li>
+           <a href="{{url_for('adminbp.dashboard')}}">Dashboard</a>
+        </li>
+        <li>
+            <a href="{{url_for('adminbp.manageservices')}}">Manage Requests and services</a>
+        </li>
+        <li>
+            <a href="{{url_for('adminbp.summary')}}">Summary</a>
+        </li>
+        <li>
+            <a href='{{url_for("logout")}}'>Logout</a>
+        </li>   
+</ul>
+</div>
+<div style="max-width: 600px;">
+  <canvas id="ratingChart"></canvas>
+</div>
+    <div style="max-width: 600px;">
+        <canvas id="statuschart"></canvas>
+      </div>
+      <h1> Summary</h1>
+    <div class="chart-container">
+        <canvas id="ratingChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="statusChart"></canvas>
+    </div>
+      <script>
+   
+        const ratingCtx = document.getElementById('ratingChart').getContext('2d');
+        const ratingChart = new Chart(ratingCtx, {
+            type: 'pie',
+            data: {
+                labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                datasets: [{
+                    label: 'Customer Ratings',
+                    data: {{ customer_ratings|tojson }},
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800'],
+                    borderWidth:1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+            }
+        });
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        const statusChart = new Chart(statusCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Accepted', 'Rejected', 'Pending'],
+                datasets: [{
+                    label: 'Service Request Status',
+                    data: [
+                        {{ accepted_requests }},
+                        {{ rejected_requests }},
+                        {{ pending_requests }}
+                    ],
+                    backgroundColor: ['#4CAF50', '#FF6384', '#FFCE56'],
+                    borderColor: ['#4CAF50', '#FF6384', '#FFCE56'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+      </script>
+</body>
+</html>

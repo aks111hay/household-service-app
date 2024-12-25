@@ -1,0 +1,99 @@
+:root {
+    --clr-back: #f9fafb; /* Light background */
+    --clr-text: #333; /* Dark text color */
+    --clr-primary: #10a37f; /* Primary button color */
+    --clr-primary-hover: #0e8b6d; /* Primary hover color */
+    --clr-border: #e0e0e0; /* Border color for inputs */
+    --clr-placeholder: #b0b3b8; /* Placeholder text color */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--clr-back);
+    color: var(--clr-text);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--clr-border);
+    background-color: #f9fafb;
+    color: var(--clr-text);
+}
+
+input::placeholder {
+    color: var(--clr-placeholder);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+}
+
+
+.primary-btn:hover {
+    background-color: var(--clr-primary-hover);
+}
+
+.primary-btn {
+    background-color: var(--clr-primary);
+    color: var(--clr-text);
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    text-decoration: none;
+    width:100%;
+    transition: background-color 0.3s ease;
+}
+.container{
+    font-family: Arial, sans-serif;
+            background-color: white;
+            color: var(--clr-text);
+            }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color:var(--clr-primary);
+}
+a:hover{
+    color: var(--clr-primary-hover);
+    text-decoration:underline;
+}
+
+nav {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--clr-primary);
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    border: 5px solid rgb(167, 246, 209);
+    
+    
+}
+
+h2, h3 {
+    color: var(--clr-primary);
+}
+
+h3 {
+    margin: 0;
+}
+
+

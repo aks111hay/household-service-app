@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile</title>
+    <link rel="stylesheet" href="../../static/stylesheet.css">
+    <style>
+        .profile-container{
+            border:2px solid #10a37f;
+            border-radius:100px;
+            margin-right: 100px;
+            margin-top: 50px;
+        }
+        .profile-picture{
+            margin:40px;
+            border:4px solid black;
+            width: 200px;
+            height:auto;
+            float:left;
+            background-color: #10a37f;
+        }
+        .profile-picture img{
+            width: 200px;
+            height:300px;
+        }
+        .primary-btn{
+            background-color: #10a37f;
+            margin-left: 40px;
+        }
+        .primary-btn a{
+            text-decoration: none;
+            color:lightgray;
+        }
+        .profile-container p{
+            padding:40px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-picture">
+            <!-- Display Profile Image (stored as binary data) -->
+            <img src="data:image/jpeg;base64,{{ user_image }}" alt="profile_pic">
+        </div>
+        <h1 style="margin:40px; margin-top:80px;">Welcome to your profile, {{ professional.first_name }} {{ professional.last_name }}</h1>
+        <p>
+            Name: {{ professional.first_name }} {{ professional.last_name }}<br>
+            Phone number: {{ professional.phone_number }}<br>
+            Email: {{ user.email }}<br>
+            Experience: {{ professional.experience }} years<br>
+            Age: {{ professional.age }}<br>
+            State: {{ professional.state }}<br>
+            City: {{ professional.city }}<br>
+            Pin code: {{ professional.pin_code }}<br>
+            Address: {{ professional.address }}<br>
+        </p>
+        <h3>Services Offered:</h3>
+        <ul>
+            {% for service in professional.services %}
+                <li>{{ service.name }}</li>
+            {% else %}
+                <li>No services assigned.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+

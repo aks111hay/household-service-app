@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Close Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form label {
+            font-weight: bold;
+        }
+        form textarea, form select, form button {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #10a37f;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0e8b6e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Close Service</h1>
+        <form action="{{ url_for('cust.close_service', request_id=request.req_id) }}" method="POST">
+            <label for="remarks">Remarks:</label>
+            <textarea id="remarks" name="remarks" rows="4" placeholder="Enter your feedback..."></textarea>
+            
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

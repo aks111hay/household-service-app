@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Request Details</title>
+    <link rel="stylesheet" href="../static/admin_stylesheet.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details div {
+            margin-bottom: 10px;
+        }
+        .details span {
+            font-weight: bold;
+        }
+        .buttons {
+            text-align: center;
+        }
+        .buttons a {
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .edit-button {
+            background-color: #007BFF;
+        }
+        .edit-button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            background-color: #6c757d;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Service Request Details</h1>
+        <div class="details">
+            <div><span>ID:</span> {{ request.req_id }}</div>
+            <div><span>Service:</span> {{ request.service.name }}</div>
+            <div><span>Customer:</span> {{ request.customer.first_name }} {{ request.customer.last_name }}</div>
+            <div><span>Assigned Professional:</span> 
+                {% if request.service.professional %}
+                    {{ request.service.professional.first_name }} {{ request.service.professional.last_name }}
+                {% else %}
+                    Not Assigned
+                {% endif %}
+            </div>
+            <div><span>Requested Date:</span> {{ request.date_req }}</div>
+            <div><span>Status:</span> {{ request.status }}</div>
+        </div>
+    </div>
+</body>
+</html>

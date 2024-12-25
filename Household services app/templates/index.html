@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household Services</title>
+    <style>
+        .navbar{
+            position: absolute;
+            margin-top: 400px;
+            padding: 20px;
+            text-align: center;
+            margin-left: 600px;
+        }
+        .navbar h1{
+            font-size: 44px;
+            color: var(--clr-primary);
+            text-align: center;
+        }
+        
+        .navbar ul {
+            list-style-type: none;
+            margin-top: 10px;
+        }
+        
+        .navbar ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        
+        .navbar ul li a {
+            color: var(--clr-primary);
+            text-decoration: none;
+            font-size: 18px;
+            
+        }
+        
+        .navbar ul li a:hover {
+            color: var(--clr-primary-hover);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+           
+            text-align: center;
+            padding :100px 20px;
+            background-color: #1f2428;
+        }
+        
+        .hero-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color:var(--clr-primary)
+        }
+        
+        .hero-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color:var(--clr-primary)
+        }
+        .wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            background-color: #1f2428;
+            padding: 10px 0;
+        }
+        
+        .wrapper div {
+            flex: 0 0 auto;
+            margin: 5px;
+            width: 120px;
+            height: 60px;
+            background-color: var(--clr-primary);
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--clr-text);
+            border-radius: 5px;
+        }
+        
+        /* Animation to scroll items horizontally */
+        @keyframes scrollItems {
+            0% {
+                transform: translateX(500%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .wrapper .item {
+            animation: scrollItems 5s linear infinite;
+        } 
+    </style>
+    <link rel="stylesheet" href="../static/stylesheet.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1 >Househelpers </h1>
+        <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <header class="hero-section">
+        <h2>Your Trusted Partner for Household Services</h2>
+        <p>We provide a wide range of professional services to take care of your home.</p>
+        <a href="/login" class="primary-btn">Start Now</a>
+    </header>
+    <section class="wrapper" id="services">
+        <div class="item">Cleaning</div>
+        <div class="item">Plumbring</div>
+        <div class="item">Electrician</div>
+        <div class="item">Painting</div>
+        <div class="item">Carpentry</div>
+        <div class="item">Gardening</div>
+        <div class="item">Pest Control</div>
+        <div class="item">Tailors</div>
+        <div class="item">Construction</div>
+        <div class="item">Sweeping</div>
+        <div class="item">Mechanic</div>
+        <div class="item">Dry Cleaning</div>
+        <div class="item">Cook</div>
+        <div class="item">Saloon</div>
+        </section>
+    </body>
+    </html>

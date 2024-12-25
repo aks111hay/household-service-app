@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}customer dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="../../static/stylesheet.css">
+    <style>
+nav a{
+    margin:20px;
+    padding:10px;
+    text-decoration: none;
+    color:white;
+}       
+.dashboard-container{
+    border:2px solid var(--clr-primary);
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    font-size: 30px;
+}
+.service-card{
+    background-color: white;
+    border: 1px solid var(--clr-border);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.2s;
+    text-align: center;
+}
+.service-card:hover{
+    transform: scale(1.05);
+}
+.service-history{
+    border:2px solid var(--clr-primary);
+    border-radius:10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    font-size: 20px;
+}
+.service-history table{
+    border:2px solid black;
+    margin: 20px;
+    padding: 60px;
+    margin-left:150px
+}
+.service-history table th,td{
+    padding: 20px;
+}
+.dashboard-container form select{
+    text-align: right;
+    padding:10px;
+    font-size: 20px;
+    border-radius: 200px;
+}
+
+    </style>
+</head>
+<body style="background-color:#1f2428;">
+    <nav>
+    Welcome, {{ customer_name }}
+     
+        <a href="{{url_for('cust.dashboard1')}}">| Home |</a>
+        <a href="{{url_for('cust.search')}}">| Search |</a>
+        <a href="{{url_for('cust.customer_summary')}}">| Summary |</a>
+        <a href="{{url_for('logout')}}">| Log out |</a>
+    </nav>
+    <br>
+    <a href="/cust/profile" style="font-size:30px; margin-left:90px;font-style:italic;">Go to Profile Page</a>
+    {% block content %}
+    <div class="dashboard-container" style="background-color:aquamarine;
+    box-shadow: 0 10px 20px rgba(0, 128, 66, 0.556);">
+        Looking for?
+        {% for service in services %}
+        <div class="service-card">
+            <a href="{{url_for('cust.best_deals(service.ser_id)')}}">{{ service.name }}</a>
+        </div>
+        {% endfor %}
+        </div>
+    <div class="service-history" style="background-color: aquamarine;
+    box-shadow: 0 10px 20px rgba(0, 128, 66, 0.556);">
+        <p style="text-align:center;font-size:30px;margin:20px;padding:20px;">Your service history</p>
+          <table>
+            <thead>
+                <tr>
+            <th>id</th>
+            <th>service name</th>
+            <th>professional name</th>
+            <th>phone number</th>
+            <th>status</th>
+        </tr>
+        </thead>
+        <tbody>{% for service in services %}
+            <tr>
+                <td>{{service.request.req_id}}</td>
+                <td>{{service.name}}</td>
+                <td>{{service.professsional.first_name}}</td>
+                <td>{{service.professsional.phone_number}}</td>
+                {% if service.request.status == "accepted" %}
+                <td><a href="{{ url_for('cust.close_service', request_id=service.request.req_id) }}">Close it?</a></td>
+                {% else %}
+                <td>{{ service.request.status }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+          </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

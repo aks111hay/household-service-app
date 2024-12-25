@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service Request Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../static/stylesheet.css">
+</head>
+<body>
+    <h1>Service Request Summary</h1>
+
+    <!-- Service Request Status Bar Chart -->
+    <div style="max-width: 600px;">
+        <canvas id="statusChart"></canvas>
+    </div>
+
+    <script>
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        const statusChart = new Chart(statusCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Accepted', 'Rejected', 'Pending'],
+                datasets: [{
+                    label: 'Service Request Status',
+                    data: [
+                        {{ accepted_requests }},
+                        {{ rejected_requests }},
+                        {{ pending_requests }}
+                    ],
+                    backgroundColor: ['#4CAF50', '#FF6384', '#FFCE56'],
+                    borderColor: ['#4CAF50', '#FF6384', '#FFCE56'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

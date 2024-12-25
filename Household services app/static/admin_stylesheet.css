@@ -1,0 +1,134 @@
+:root {
+    --clr-back: #0e1012;
+    --clr-text: #f1f5f9;
+    --clr-back1:#1a1c1f;
+    --clr-shadow:rgba(0, 0, 0, 0.2);
+    --clr-input:#2a2c2f; /*for form input fields */
+    /* colour variables for placeholders on input fields */
+    --clr-placeholder:#b0b3b8;
+    --clr-focus:#3a3d40;
+    /* Button Colors */
+    --btn-primary-bg: #17a2b8; /* Primary button background */
+    --btn-primary-bg-hover: #138496; /* Primary button hover */
+    
+    --btn-secondary-bg: #6c757d; /* Secondary button background */
+    --btn-secondary-bg-hover: #5a6268; /* Secondary button hover */
+    
+    --btn-danger-bg: #dc3545; /* Danger button background */
+    --btn-danger-bg-hover: #c82333; /* Danger button hover */
+}
+
+body {
+    background-color: var(--clr-back);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--clr-text);
+}
+
+h1 {
+    color: var(--clr-text);
+    text-align: center;
+    font-size: 52px;
+    margin-bottom: 0px;
+    background-color: var(--clr-back1);
+}
+.navbar{
+    background-color: var(--clr-back1);
+    box-shadow: 0 4px 8px var(--clr-shadow);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: var(--clr-text);
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.navbar ul li a:hover {
+    color: var(--clr-primary);
+}
+/* ---------------------- */
+.search {
+    background-color: var(--clr-back1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--clr-shadow);
+    width: 300px;
+    margin: 20px auto;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding: auto;
+}
+
+.form label {
+    color: var(--clr-text);
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Dropdown styles */
+#search-options {
+    background-color: var(--clr-input);
+    color: var(--clr-text);
+    border: 1px solid var(--clr-focus);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+#search-options:focus {
+    border-color: var(--btn-primary-bg);
+    outline: none;
+}
+
+/* Input field styles */
+#example {
+    background-color: var(--clr-input);
+    color: var(--clr-text);
+    border: 1px solid var(--clr-focus);
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+#example::placeholder {
+    color: var(--clr-placeholder);
+}
+
+#example:focus {
+    border-color: var(--btn-primary-bg);
+    outline: none;
+}
+
+/* Button styles */
+.primary-button {
+    background-color: var(--btn-primary-bg);
+    color: var(--clr-text);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+    background-color: var(--btn-primary-bg-hover);
+}

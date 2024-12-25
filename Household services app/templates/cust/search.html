@@ -1,0 +1,48 @@
+{% extends 'cust/cust_dashboard.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<div class="dashboard-container">
+    <header style="float:left;margin-left:30px;margin-top:10px;font-size:40px;">Search by</header>
+    <form action="{{ url_for('cust.search') }}" method="GET">
+        <select name="category" style="margin-left:0px; margin-top:10px;margin-bottom:10px;">
+            <option value="service">Service</option>
+            <option value="professional">Professional</option>
+        </select>
+        <input type="text" name="query" placeholder="Search by name, location, or pin..." style="margin-left:15px;margin-top:10px;margin-bottom:10px;">
+        <button type="submit" class="primary-btn" style="margin-bottom:20px;">Search</button>
+    </form>
+</div>
+
+{% if results %}
+<div class="search-results">
+    <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Professional Name</th>
+                <th>Rating</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for professional in results %}
+            <tr>
+                <td>{{ professional.first_name }} {{ professional.last_name }}</td>
+                <td>{{ professional.rating }}</td>
+                <td>{{ professional.price }}</td>
+                <td>
+                    <form action="{{ url_for('cust.book_service', professional_id=professional.professional_id) }}" method="POST">
+                        <button type="submit" class="primary-btn">Book</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p style="margin-top:20px; color:red;">No results found.</p>
+{% endif %}
+{% endblock %}
+
+

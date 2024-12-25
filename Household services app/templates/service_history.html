@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history</title>
+    <link rel="stylesheet" href="../static/stylesheet.css">
+</head>
+<body>
+    <header>Service History</header>
+    <div class="history-container">
+        {% for service in service_history %}
+        <div class="service-history-item">
+            <p>ID: {{ service.id }}</p>
+            <p>Service Name: {{ service.name }}</p>
+            <p>Professional: {{ service.professional_name }}</p>
+            <p>Phone: {{ service.professional_phone }}</p>
+            <p>Status: {{ service.status }}</p>
+            {% if service.status != 'Closed' %}
+                <a href="{{ url_for('close_service', service_id=service.id) }}">Close Service</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

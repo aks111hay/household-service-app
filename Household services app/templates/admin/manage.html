@@ -1,0 +1,87 @@
+{% extends 'admin/admin_layout.html'  %}
+{% block title %}manage{% endblock %}
+{% block content %}
+    <div class="header">
+        <a href="{{url_for('adminbp.new_service')}}" class="primary-button" style="margin:600px; margin-top:30px;">Add New Service</a>
+    </div>
+
+    <h2>All Services</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Service Name</th>
+                <th>Base Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td>{{ service.ser_id }}</td>
+                <td>{{ service.name }}</td>
+                <td>{{ service.base_price }}</td>
+                <td class="action-buttons">
+                    <a href="admin/edit-service/{{ service.id }}">Edit</a>
+                    <a href="admin/delete-service/{{ service.id }}" style="color: red;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>All Professionals</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Experience</th>
+                <th>Service Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for professional in professionals %}
+            <tr>
+                <a href="url_for('admin.detail({{ professional.ser_id }})')"><td>{{ professional.s_id }}</td></a>
+                <td>{{ professional.first_name }}</td>
+                <td>{{ professional.experience }}</td>
+                <td>{{ professional.appointment.name }}</td>
+                <td class="action-buttons">
+                    <a href="admin/delete-user/{{ professional.s_id }}" style="color: red;">Delete User</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Service Requests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Assigned Professional</th>
+                <th>Requested Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+                <tr>
+                    <a href="url_for('admin.service_request_details({{ request.req_id }})')"><td>{{ request.req_id }}</td></a>
+                    <td>
+                        {% if request.service.professional %}
+                            {{ request.service.professional.first_name }} {{ request.service.professional.last_name }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <td>{{ request.date_req }}</td>
+                    <td>{{ request.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+{% endblock %}

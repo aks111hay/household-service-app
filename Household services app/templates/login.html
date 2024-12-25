@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/stylesheet.css">
+    <style>
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px; 
+            margin-top:100px;
+            margin-bottom:100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left:400px;
+        }
+        .container .flashes{
+            color:red;
+            text-align:center;
+            font-size: 20px;
+        }
+        .container .link1 {
+            align-self: flex-end;
+            margin-bottom: 20px;
+            
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--clr-text);
+        }
+        .container .link1 a{
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin:0px;
+            color: var(--clr-primary);
+            text-decoration: none;
+            
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        a{
+            color:var(--clr-primary);
+            text-decoration:none;
+        }
+        .container .link1 a:hover,
+        a:hover {
+            text-decoration: underline;
+            color:var(--clr-primary-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+        <div class="link1"><a href="prof/profesional_register">Register as a professional</a> </div>
+        <h1>Login</h1>
+        <form class="form" action= "{{ url_for('login') }}" method="POST">
+            <div style="margin-bottom:20px;">
+                <input type="text" id="username" name="username" placeholder="Email or Username" required>
+            </div>
+            <div style="margin-bottom:20px;">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div style="margin-top:10px;">
+                <button type="submit" class="primary-btn">Continue</button>
+            </div>
+            <div style="margin-top:10px;">
+                New to househelpers :
+                <a href="/cust/cust_registration">Sign-up</a>
+            </div>
+            <div style="margin-top: 15px;color: var(--clr-primary);text-decoration: none;font-size: 14px;">
+                <a href="#">Forgot password?</a>
+            </div>
+           
+        </form>
+    </div>
+</body>
+</html>
